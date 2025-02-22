@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0102e376c271074d83b0a8ebffc5f8c
+guid: 79e070216082cf04d9ac1e3f52d41221
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8664961802942029117
-    second: meteor2_0
+      213: -6487192459751018830
+    second: Spaceship firing w thrust pix_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: meteor2_0
+      name: Spaceship firing w thrust pix_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 18
-        width: 37
-        height: 68
+        x: 0
+        y: 0
+        width: 69
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c2ef4f262fdfb780800000000000000
-      internalID: -8664961802942029117
+      spriteID: 2bea2f614dcd8f5a0800000000000000
+      internalID: -6487192459751018830
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      meteor2_0: -8664961802942029117
+      Spaceship firing w thrust pix_0: -6487192459751018830
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
