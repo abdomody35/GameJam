@@ -27,10 +27,11 @@ public class Algorithm : MonoBehaviour
 
         List<GameObject> tempObstacles = new();
         int tempObstacleCount = 0;
+        int previousTime = _gameTime;
 
         while (true)
         {
-            while (tempObstacleCount > 0 && tempObstacles[tempObstacleCount - 1] != null)
+            while (tempObstacleCount > 0 && tempObstacles[tempObstacleCount - 1] != null && _gameTime - previousTime > 3)
             {
                 Destroy(tempObstacles[tempObstacleCount - 1]);
                 tempObstacles.RemoveAt(tempObstacleCount - 1);
@@ -42,12 +43,13 @@ public class Algorithm : MonoBehaviour
             {
                 StartCoroutine(Warning(obstacle[3]));
                 yield return new WaitForSeconds(_spawnInterval);
+                previousTime = _gameTime;
                 continue;
             }
             else if (randomIndex == 6 || randomIndex == 7)
             {
                 tempObstacleCount++;
-                randomPosition = new(Random.Range(-_spawnRangeX, _spawnRangeX), Random.Range(-_spawnRangeY, _spawnRangeY));
+                randomPosition = new(Random.Range(-_spawnRangeX, _spawnRangeX), Random.Range(-_spawnRangeY + 3, _spawnRangeY));
                 GameObject newObstacle = Instantiate(obstacle[randomIndex], randomPosition, transform.rotation);
                 tempObstacles.Add(newObstacle);
             }
@@ -56,8 +58,6 @@ public class Algorithm : MonoBehaviour
                 randomPosition = new(transform.position.x + Random.Range(-_spawnRangeX, _spawnRangeX), transform.position.y);
                 Instantiate(obstacle[randomIndex], randomPosition, transform.rotation);
             }
-
-
 
             yield return new WaitForSeconds(_spawnInterval); // Wait before spawning next obstacle
         }
@@ -70,16 +70,16 @@ public class Algorithm : MonoBehaviour
             _gameTime++;
             yield return new WaitForSeconds(1);
 
-            float _gameStage = _gameTime / 60 * GameManager.instance.Score * 1.2f;
+            float _gameStage = GameManager.instance.Score > 500 ? _gameTime / 60 * GameManager.instance.Score * 0.5f : _gameTime / 60 * GameManager.instance.Score * 1.2f;
 
             if (_gameTime % 10 == 0 && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
             {
                 _availableObstacles++; // Unlock a new obstacle
             }
 
-            if (_gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
+            if (_gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 70)
             {
-                _spawnInterval = Mathf.Max(0.3f, _spawnInterval - 0.1f); // Decrease spawn interval (faster spawning, min 0.3s)
+                _spawnInterval = Mathf.Max(0.5f, _spawnInterval - 0.1f); // Decrease spawn interval (faster spawning, min 0.3s)
             }
         }
     }
