@@ -23,15 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     public void IncrementScore(int amount)
@@ -65,24 +57,4 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Assume scene build index 0 is the main menu
-        if (scene.buildIndex == 0)
-        {
-            if (src.clip != mainMenuMusic)
-            {
-                src.clip = mainMenuMusic;
-                src.Play();
-            }
-        }
-        else
-        {
-            if (src.clip != gameplayMusic)
-            {
-                src.clip = gameplayMusic;
-                src.Play();
-            }
-        }
-    }
 }

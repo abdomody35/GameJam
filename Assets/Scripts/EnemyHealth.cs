@@ -54,10 +54,13 @@ public class EnemyHealth : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            if (other.TryGetComponent<PlayerController>(out var player))
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
             {
-                player.TakeDamage(1); // Assumes your PlayerController has a TakeDamage method
+                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
             }
+            _src.clip = die_sfx;
+            _src.Play();
             Destroy(gameObject);
         }
     }

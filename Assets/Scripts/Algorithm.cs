@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Algorithm : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class Algorithm : MonoBehaviour
     private readonly int _maxObstacles = 8; // Maximum number of different obstacles to unlock
     private readonly int _spawnRangeX = 8; // Range of x values obstacles can spawn at
     private readonly int _spawnRangeY = 4; // Range of y values obstacles can spawn at
-    private int _availableObstacles = 8; // Starts with only the first obstacle available
-    private float _spawnInterval = 2.5f; // Initial spawn interval
+    private int _availableObstacles = 1; // Starts with only the first obstacle available
+    private float _spawnInterval = 2f; // Initial spawn interval
     private int _gameTime = 0; // Tracks elapsed time
 
     void Start()
@@ -70,16 +71,30 @@ public class Algorithm : MonoBehaviour
             _gameTime++;
             yield return new WaitForSeconds(1);
 
-            float _gameStage = GameManager.instance.Score > 500 ? _gameTime / 60 * GameManager.instance.Score * 0.5f : _gameTime / 60 * GameManager.instance.Score * 1.2f;
+            float _gameStage;
 
-            if (_gameTime % 10 == 0 && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
+            if (GameManager.instance.Score > 500)
             {
+                _gameStage = _gameTime / 60 * GameManager.instance.Score * 0.3f;
+            }
+            else if (GameManager.instance.Score < 200)
+            {
+                _gameStage = _gameTime / 60 * GameManager.instance.Score * 100f;
+            }
+            else
+            {
+                _gameStage = _gameTime / 60 * GameManager.instance.Score * 0.8f;
+            }
+
+            if ((_gameTime < 30 ||_gameTime % 10 == 0) && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
+            {
+                if (_availableObstacles < _maxObstacles - 1 && GameManager.instance.Score < 5000)
                 _availableObstacles++; // Unlock a new obstacle
             }
 
-            if (_gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 70)
+            if (_gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
             {
-                _spawnInterval = Mathf.Max(0.5f, _spawnInterval - 0.1f); // Decrease spawn interval (faster spawning, min 0.3s)
+                _spawnInterval = Mathf.Max(0.4f, _spawnInterval - 0.05f); // Decrease spawn interval (faster spawning, min 0.4s)
             }
         }
     }

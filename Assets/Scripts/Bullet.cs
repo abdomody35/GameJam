@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        damage = 1;
+        
         // Add a Rigidbody2D component and set collision detection to Continuous
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
@@ -46,7 +48,7 @@ public class Bullet : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage(damage); // Assumes your PlayerController has a TakeDamage method
+                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
             }
             Destroy(gameObject);
         }

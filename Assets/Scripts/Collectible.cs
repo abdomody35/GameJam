@@ -9,7 +9,7 @@ public class Collectible2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, rotationSpeed, 0);
+        transform.Rotate(0, 0, rotationSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,7 +17,7 @@ public class Collectible2D : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            PlayerController.playerLevel += 0.1f;
+            other.GetComponent<PlayerController>().bulletPrefab.GetComponent<Bullet>().damage++;
             Instantiate(onCollectEffect, transform.position, transform.rotation);
         }
     }

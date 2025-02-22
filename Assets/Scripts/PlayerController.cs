@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fuelText;
     public AudioSource src;
     public AudioClip shooting_sfx;
-    public static float playerLevel = -1f;
 
     [Header("Movement Settings")]
     public float _normalSpeed = 10f;
@@ -239,7 +237,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
         GameManager.instance.DecreaseLives();
         if (GameManager.instance.Lives <= 0)

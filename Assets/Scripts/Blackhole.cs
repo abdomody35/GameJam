@@ -6,7 +6,8 @@ public class Blackhole : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(1);
             }

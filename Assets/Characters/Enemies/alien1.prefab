@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   die_sfx: {fileID: 8300000, guid: e128e6be1b3322d44b6ab65cbddcbd44, type: 3}
   score: 25
-  maxHealth: 2
-  collectible: {fileID: 7013695972080399857, guid: 8a7037931db96d14ea63148b88fa3816, type: 3}
+  maxHealth: 1
+  collectible: {fileID: 6753450361440110224, guid: 703bc791c4761a244a7654f94a4bbef8, type: 3}
   fireRate: 3
   bullet: {fileID: 8639678933214450023, guid: fb41a95fa5a343344b6f1e1933b543f1, type: 3}
 --- !u!70 &-8638704192050676609

@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: 1b26f58e3d1268c448aed3af24fb0dda
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6362075731779491608
+    second: logo with start and exit_0
+  - first:
+      213: -764805857329460415
+    second: logo with start and exit_1
+  - first:
+      213: 6252839584749736526
+    second: logo with start and exit_2
+  - first:
+      213: 6908658668690364062
+    second: logo with start and exit_3
+  - first:
+      213: -4002319480144139276
+    second: logo with start and exit_4
+  - first:
+      213: -3082246996185407462
+    second: logo with start and exit_5
+  - first:
+      213: 9156580961357705059
+    second: logo with start and exit_6
+  - first:
+      213: 4617297750155190938
+    second: logo with start and exit_7
+  - first:
+      213: -1582532107396213643
+    second: logo with start and exit_8
+  - first:
+      213: 5612593328380158263
+    second: logo with start and exit_9
+  - first:
+      213: 5383960381437852629
+    second: logo with start and exit_10
+  - first:
+      213: -6584138443248511894
+    second: logo with start and exit_11
+  - first:
+      213: 4417306982726531778
+    second: logo with start and exit_12
+  - first:
+      213: -8238513936103570084
+    second: logo with start and exit_13
+  - first:
+      213: -2086622044918105198
+    second: logo with start and exit_14
+  - first:
+      213: 3974385808881124700
+    second: logo with start and exit_15
+  - first:
+      213: -4886383858438124180
+    second: logo with start and exit_16
+  - first:
+      213: -8381324363951732451
+    second: logo with start and exit_17
+  - first:
+      213: -788808202137974374
+    second: logo with start and exit_18
+  - first:
+      213: 1564408712312456692
+    second: logo with start and exit_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 33, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logo with start and exit_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 72
+        width: 108
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8662564dd55b7a0800000000000000
+      internalID: -6362075731779491608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_1
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 145
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b4db7ff1dd265f0800000000000000
+      internalID: -764805857329460415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_2
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 147
+        width: 43
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e42528e297c86c650800000000000000
+      internalID: 6252839584749736526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_3
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 96
+        width: 18
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9656bd947c70ef50800000000000000
+      internalID: 6908658668690364062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 147
+        width: 13
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fbe16453a7e478c0800000000000000
+      internalID: -4002319480144139276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_5
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 76
+        width: 101
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10aa5affa8a935d0800000000000000
+      internalID: -3082246996185407462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 147
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36fa4d6eed5b21f70800000000000000
+      internalID: 9156580961357705059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_7
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 147
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92e53c17dfe31040800000000000000
+      internalID: 4617297750155190938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_8
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 71
+        width: 71
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5749ff4de67b90ae0800000000000000
+      internalID: -1582532107396213643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_9
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 147
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 731a3d635efe3ed40800000000000000
+      internalID: 5612593328380158263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_10
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 50
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5db3164017ba7ba40800000000000000
+      internalID: 5383960381437852629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_11
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 75
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64dd2a58f070a4a0800000000000000
+      internalID: -6584138443248511894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_12
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 36
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca74410c4d6d4d30800000000000000
+      internalID: 4417306982726531778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_13
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 75
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c550171893beaad80800000000000000
+      internalID: -8238513936103570084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_14
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 65
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29b38283e44da03e0800000000000000
+      internalID: -2086622044918105198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_15
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 23
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5586b206dad72730800000000000000
+      internalID: 3974385808881124700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_16
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 25
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6dc79915c3103cb0800000000000000
+      internalID: -4886383858438124180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_17
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 25
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d19845ba5ed8fab80800000000000000
+      internalID: -8381324363951732451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_18
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 11
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99c6a39e179d05f0800000000000000
+      internalID: -788808202137974374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo with start and exit_19
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 11
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f509ec6f65e5b510800000000000000
+      internalID: 1564408712312456692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logo with start and exit_0: -6362075731779491608
+      logo with start and exit_1: -764805857329460415
+      logo with start and exit_10: 5383960381437852629
+      logo with start and exit_11: -6584138443248511894
+      logo with start and exit_12: 4417306982726531778
+      logo with start and exit_13: -8238513936103570084
+      logo with start and exit_14: -2086622044918105198
+      logo with start and exit_15: 3974385808881124700
+      logo with start and exit_16: -4886383858438124180
+      logo with start and exit_17: -8381324363951732451
+      logo with start and exit_18: -788808202137974374
+      logo with start and exit_19: 1564408712312456692
+      logo with start and exit_2: 6252839584749736526
+      logo with start and exit_3: 6908658668690364062
+      logo with start and exit_4: -4002319480144139276
+      logo with start and exit_5: -3082246996185407462
+      logo with start and exit_6: 9156580961357705059
+      logo with start and exit_7: 4617297750155190938
+      logo with start and exit_8: -1582532107396213643
+      logo with start and exit_9: 5612593328380158263
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
