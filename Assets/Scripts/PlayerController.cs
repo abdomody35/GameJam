@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_isMoving)
             {
-                _isThrustActive? _thrusterSpeed : _normalSpeed;
+                return _isThrustActive ? _thrusterSpeed : _normalSpeed;
             }
             else
             {
