@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI livesText;
 
+    // Background music clips
+    public AudioClip mainMenuMusic;
+    public AudioClip gameplayMusic;
+
     public int Lives { get { return _lives; } set { _lives = value; } }
 
     public int Score { get { return _score; } set { _score = value; } }
@@ -19,7 +23,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void IncrementScore(int amount)
@@ -39,7 +51,6 @@ public class GameManager : MonoBehaviour
         // Check if the user is on a non-main scene and presses the Escape key
         if (SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape))
         {
-            // Load the main scene (assuming the main scene is at build index 0)
             LoadScene(0);
         }
     }
@@ -52,5 +63,26 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame(){
         Application.Quit();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Assume scene build index 0 is the main menu
+        if (scene.buildIndex == 0)
+        {
+            if (src.clip != mainMenuMusic)
+            {
+                src.clip = mainMenuMusic;
+                src.Play();
+            }
+        }
+        else
+        {
+            if (src.clip != gameplayMusic)
+            {
+                src.clip = gameplayMusic;
+                src.Play();
+            }
+        }
     }
 }
