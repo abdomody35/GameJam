@@ -54,8 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null)
+            if (other.TryGetComponent<PlayerController>(out var player))
             {
                 player.TakeDamage(1); // Assumes your PlayerController has a TakeDamage method
             }

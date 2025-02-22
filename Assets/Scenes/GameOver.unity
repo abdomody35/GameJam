@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 1623501185}
   - component: {fileID: 1623501184}
   m_Layer: 0
-  m_Name: WhatsApp Image 2025-02-22 at 00.12.24_b9046088_0
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +852,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -3091196634943397152, guid: 3e1f7e58a287e40438c18511e8198a18, type: 3}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -987,6 +987,8 @@ MonoBehaviour:
   src: {fileID: 0}
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
+  mainMenuMusic: {fileID: 0}
+  gameplayMusic: {fileID: 0}
 --- !u!114 &1709848663
 MonoBehaviour:
   m_ObjectHideFlags: 0

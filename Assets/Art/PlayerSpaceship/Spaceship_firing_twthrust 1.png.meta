@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spaceship_firing_twthrust 1_0: -829205988846667551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

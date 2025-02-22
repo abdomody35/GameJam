@@ -11,7 +11,7 @@ public class Algorithm : MonoBehaviour
     private readonly int _maxObstacles = 8; // Maximum number of different obstacles to unlock
     private readonly int _spawnRangeX = 8; // Range of x values obstacles can spawn at
     private readonly int _spawnRangeY = 4; // Range of y values obstacles can spawn at
-    private int _availableObstacles = 1; // Starts with only the first obstacle available
+    private int _availableObstacles = 8; // Starts with only the first obstacle available
     private float _spawnInterval = 2.5f; // Initial spawn interval
     private int _gameTime = 0; // Tracks elapsed time
 
