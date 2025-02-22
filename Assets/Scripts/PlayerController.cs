@@ -1,7 +1,5 @@
 using System;
 using System.Runtime.CompilerServices;
-using System.Collections;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,9 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI fuelText;
-    public AudioSource src;
-    public AudioClip shooting_sfx;
 
     public static float playerLevel = -1f;
 
@@ -25,10 +20,9 @@ public class PlayerController : MonoBehaviour
     public float maxFuel = 100f;
     public float fuelConsumptionRate = 15f;
     public float fuelRechargeRate = 30f;
-    public float fuelRechargeDelay = 2f;
     private float currentFuel;
+    public Slider fuelSlider;
     private bool _isThrustActive = false;
-    private bool isRecharging = false;
 
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
@@ -50,7 +44,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (_isThrustActive)
                 {
-                    return _isThrustActive ? _thrusterSpeed : _normalSpeed;
+                    return _thrusterSpeed;
                 }
                 else
                 {
@@ -99,7 +93,11 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize fuel and update the slider, if available
         currentFuel = maxFuel;
-
+        if (fuelSlider != null)
+        {
+            fuelSlider.maxValue = maxFuel;
+            fuelSlider.value = currentFuel;
+        }
     }
 
     //void Update()
@@ -120,21 +118,10 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    void Update()
-    {
-        // Update the fire cooldown timer
-        if (fireCooldown > 0)
-            fireCooldown -= Time.deltaTime;
-
-        // Handle fuel consumption and recharge
-        HandleFuel();
-
-        // Update the fuel text
-        fuelText.text = "Fuel: %" + currentFuel.ToString("F2");
-    }
-
     void FixedUpdate()
     {
+        if (fireCooldown > 0)
+            fireCooldown -= Time.deltaTime;
         // Determine speed based on whether thruster is active and fuel is available
         rb.linearVelocity = new Vector2(moveInput.x * CurrentMovingSpeed, moveInput.y * CurrentMovingSpeed);
 
@@ -144,7 +131,6 @@ public class PlayerController : MonoBehaviour
             fireCooldown = fireRate;
         }
     }
-
 
     // This method is called by the PlayerInput component when the Move action is triggered.
     public void OnMove(InputAction.CallbackContext context)
@@ -157,48 +143,16 @@ public class PlayerController : MonoBehaviour
     // This method is called by the PlayerInput component when the Thrust action is triggered.
     public void OnThrust(InputAction.CallbackContext context)
     {
+        // If the thrust button is pressed and there's fuel, enable thruster mode.
         if (context.started)
         {
-            _isThrustActive = true;
-            isRecharging = false; // Stop recharging when thrusting
-            StopCoroutine(FuelRechargeDelay());
+            IsThrustActive = true;
         }
         else if (context.canceled)
         {
-            _isThrustActive = false;
-            StartCoroutine(FuelRechargeDelay());
+            IsThrustActive = false;
         }
     }
-
-    private IEnumerator FuelRechargeDelay()
-    {
-        yield return new WaitForSeconds(fuelRechargeDelay);
-        isRecharging = true;
-    }
-
-    private void HandleFuel()
-    {
-        if (_isThrustActive && currentFuel > 0)
-        {
-            currentFuel -= fuelConsumptionRate * Time.deltaTime;
-            if (currentFuel <= 0)
-            {
-                currentFuel = 0;
-                _isThrustActive = false;
-                StartCoroutine(FuelRechargeDelay());
-            }
-        }
-        else if (!_isThrustActive && isRecharging && currentFuel < maxFuel)
-        {
-            currentFuel += fuelRechargeRate * Time.deltaTime;
-            if (currentFuel > maxFuel)
-                currentFuel = maxFuel;
-        }
-
-        // Update the fuel text
-        fuelText.text = "Fuel: %" + currentFuel.ToString("F2");
-    }
-
 
     // This method is called by the PlayerInput component when the Attack action is triggered.
     public void OnShoot(InputAction.CallbackContext context)
@@ -219,8 +173,6 @@ public class PlayerController : MonoBehaviour
     {
         if (bulletPrefab != null && firePoint != null)
         {
-            src.clip = shooting_sfx;
-            src.Play();
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
     }

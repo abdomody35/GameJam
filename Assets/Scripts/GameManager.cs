@@ -23,8 +23,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + _score.ToString();
     }
 
-    public void DecreaseLives() {
-        Debug.Log("Decrease lives");
+    public void DecreaseLives() { 
         _lives--;
         livesText.text = "Lives: 0" + _lives.ToString();
     }
