@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public int _lives = 3;
     [Header("Movement Settings")]
     public float _normalSpeed = 10f;
     public float _thrusterSpeed = 15f;
@@ -178,10 +177,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         // Reduce player health and check for death
-        _lives -= damage;
-        Debug.Log("Player hit! Lives remaining: " + _lives);
+        GameManager.instance.DecreaseLives();
+        //Debug.Log("Player hit! Lives remaining: " + _lives);
 
-        if (_lives <= 0)
+        if (GameManager.instance.Lives <= 0)
         {
             Die();
         }
