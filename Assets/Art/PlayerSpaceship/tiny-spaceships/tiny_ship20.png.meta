@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tiny_ship20_0: 1303143682609163073
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
