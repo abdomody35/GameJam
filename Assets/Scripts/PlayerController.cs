@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     public float fuelRechargeRate = 30f;
     public float fuelRechargeDelay = 2f;       // Wait time before fuel starts recharging
     private float currentFuel;
-    public Slider fuelSlider;
     private bool _isThrustActive = false;
     private bool isRecharging = false;
 
@@ -85,11 +84,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         currentFuel = maxFuel;
-        if (fuelSlider != null)
-        {
-            fuelSlider.maxValue = maxFuel;
-            fuelSlider.value = currentFuel;
-        }
         lastMousePosition = Input.mousePosition;
     }
 
@@ -109,8 +103,7 @@ public class PlayerController : MonoBehaviour
         // Handle fuel consumption and recharging
         HandleFuel();
         fuelText.text = "Fuel: %" + currentFuel.ToString("F2");
-        if (fuelSlider != null)
-            fuelSlider.value = currentFuel;
+        
     }
 
     void FixedUpdate()
