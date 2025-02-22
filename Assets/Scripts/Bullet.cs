@@ -28,14 +28,14 @@ public class LaserScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.CompareTag("Player"))
-        {
-            PlayerController player = collision.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.TakeDamage(damage); // Assumes your PlayerController has a TakeDamage method
-            }
-            Destroy(gameObject);
-        }
+        //if (collision.CompareTag("Player"))
+        //{
+        //    PlayerController player = collision.GetComponent<PlayerController>();
+        //    if (player != null)
+        //    {
+        //        player.TakeDamage(damage); // Assumes your PlayerController has a TakeDamage method
+        //    }
+        //    Destroy(gameObject);
+        //}
     }
 }
