@@ -16,8 +16,7 @@ public class LaserScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Destroy the bullet if it hits an enemy or goes out of bounds
-        //if (collision.CompareTag("Enemy") || collision.CompareTag("Bounds"))
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Bounds"))
         {
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (enemyHealth != null)

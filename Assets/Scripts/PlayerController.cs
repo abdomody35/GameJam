@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public int _lives = 3;
+    public static float playerLevel = -1f;
+    
     [Header("Movement Settings")]
     public float _normalSpeed = 10f;
     public float _thrusterSpeed = 15f;
