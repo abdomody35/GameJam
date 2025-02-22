@@ -148,23 +148,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator FuelRechargeDelay()
-
-
-
     {
-
-
         yield return new WaitForSeconds(fuelRechargeDelay);
-
-
         isRecharging = true;
-
-
     }
-
-
-
-
 
     private void HandleFuel()
     {
@@ -218,7 +205,6 @@ public class PlayerController : MonoBehaviour
     {
         // Reduce player health and check for death
         GameManager.instance.DecreaseLives();
-        //Debug.Log("Player hit! Lives remaining: " + _lives);
 
         if (GameManager.instance.Lives <= 0)
         {
@@ -228,8 +214,6 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player is dead!");
-        // Trigger game over logic, play explosion, etc.
-        Destroy(gameObject);
+        Application.LoadLevel("GameOver");
     }
 }

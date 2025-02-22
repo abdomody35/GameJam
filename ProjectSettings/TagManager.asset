@@ -9,6 +9,7 @@ TagManager:
   - Bounds
   - Bullet
   - Enemy_Bullet
+  - Meteor
   layers:
   - Default
   - TransparentFX

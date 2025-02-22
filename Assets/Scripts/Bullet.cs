@@ -10,14 +10,18 @@ public class Bullet : MonoBehaviour
         // Add a Rigidbody2D component and set collision detection to Continuous
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        
+
         if (gameObject.CompareTag("Enemy_Bullet"))
         {
             rb.linearVelocity = new Vector2(0, -speed);
         }
-        else
+        else if (gameObject.CompareTag("Bullet"))
         {
             rb.linearVelocity = transform.up * speed;
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(-speed, 0);
         }
     }
 
@@ -37,7 +41,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (gameObject.CompareTag("Enemy_Bullet") && collision.CompareTag("Player"))
+        if ((gameObject.CompareTag("Enemy_Bullet") || gameObject.CompareTag("Meteor")) && collision.CompareTag("Player"))
         {
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
