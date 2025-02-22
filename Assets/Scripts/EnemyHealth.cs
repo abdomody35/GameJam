@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public AudioSource src;
+    public AudioClip die_sfx;
+
     public int score = 100;
     public int maxHealth = 3;
     public GameObject collectible;
@@ -62,6 +65,8 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         // Play explosion effects or sound here if needed.
+        src.clip = die_sfx;
+        src.Play();
         Destroy(gameObject);
 
         // there is a chance it spawns a power up that will increase the player level
