@@ -37,7 +37,6 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-
         if (gameObject.CompareTag("Enemy_Bullet") && collision.CompareTag("Player"))
         {
             PlayerController player = collision.GetComponent<PlayerController>();
@@ -52,6 +51,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 }
