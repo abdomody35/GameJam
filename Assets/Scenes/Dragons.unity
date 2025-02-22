@@ -927,8 +927,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 2287759168535268910, guid: 1e740150079a6ba4b97603e4faaafe2a, type: 3}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Sprite: {fileID: 2244537257139846633, guid: c5decc75adfcca44084cee735ba1a6e3, type: 3}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -947,8 +947,8 @@ Transform:
   m_GameObject: {fileID: 483893811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0033, y: 0.0104, z: 0}
-  m_LocalScale: {x: 1.7825601, y: 1.0275378, z: 1}
+  m_LocalPosition: {x: -0.0166, y: 0.0013, z: 0}
+  m_LocalScale: {x: 2.5500543, y: 2.0120616, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2212,8 +2212,6 @@ MonoBehaviour:
   - {fileID: 8399527350544695573, guid: 2bc89c084df31974299ac065b3a05e37, type: 3}
   - {fileID: 8888617804574167430, guid: 7ebe6c4a38bb9a94fbb51f56661a837a, type: 3}
   - {fileID: 6690173133969031479, guid: 43d0f48b13341a84e94a801189639741, type: 3}
-  - {fileID: 752716488718934612, guid: 8595a0bb779422b4da800610b79edb0b, type: 3}
-  - {fileID: 7784927991760878877, guid: dd524a18107d20247bccf335d338f4fc, type: 3}
   meteorWarning: {fileID: 7169750853116176954, guid: 16c12339b87e2a549bee1dd8836deeba, type: 3}
 --- !u!212 &1663028180
 SpriteRenderer:
@@ -2698,7 +2696,7 @@ GameObject:
   - component: {fileID: 2134702886}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Blackhole
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2752,7 +2750,7 @@ Canvas:
   m_GameObject: {fileID: 2134702885}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

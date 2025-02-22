@@ -214,6 +214,6 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Application.LoadLevel("GameOver");
+        GameManager.instance.LoadScene(2); // 2 for game over
     }
 }
