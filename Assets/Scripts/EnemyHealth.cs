@@ -1,15 +1,32 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int score = 100;
     public int maxHealth = 3;
     public GameObject collectible;
+
+    public GameObject bullet;
     private int currentHealth;
+
+    private float _spawnInterval = 2f; // Initial spawn interval
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        StartCoroutine(Attack());
+    }
+
+    IEnumerator Attack()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_spawnInterval);
+
+            Instantiate(bullet, transform.position, transform.rotation);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -28,6 +45,16 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("Bottom_Wall"))
         {
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.TakeDamage(1); // Assumes your PlayerController has a TakeDamage method
+            }
             Destroy(gameObject);
         }
     }

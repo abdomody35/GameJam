@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8259127702971938994}
   - component: {fileID: 1032973557748617911}
   m_Layer: 0
-  m_Name: Laser
-  m_TagString: Untagged
+  m_Name: Space_Player_Bullets
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  damage: 1
 --- !u!60 &1032973557748617911
 PolygonCollider2D:
   m_ObjectHideFlags: 0
