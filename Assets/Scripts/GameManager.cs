@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,5 +29,20 @@ public class GameManager : MonoBehaviour
         livesText.text = "Lives: 0" + _lives.ToString();
     }
 
+    private void Update()
+    {
+        // Check if the user is on a non-main scene and presses the Escape key
+        if (SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Load the main scene (assuming the main scene is at build index 0)
+            LoadScene(0);
+        }
+    }
 
+
+    // General method to load scenes based on build index
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
 }

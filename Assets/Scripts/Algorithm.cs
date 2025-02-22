@@ -38,7 +38,7 @@ public class Algorithm : MonoBehaviour
             _gameTime++;
             yield return new WaitForSeconds(1);
 
-            float _gameStage = _gameTime / 60 * PlayerController.playerLevel * 0.8f;
+            float _gameStage = _gameTime / 60 * PlayerController.playerLevel * 1.2f;
 
             if (_gameTime % 10 == 0 && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
             {
