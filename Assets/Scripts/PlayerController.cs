@@ -257,6 +257,6 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        GameManager.instance.LoadScene(2);
+        GameManager.instance.LoadScene(2); // 2 for game over
     }
 }

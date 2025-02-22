@@ -10,6 +10,8 @@ TagManager:
   - Bullet
   - Enemy_Bullet
   - Meteor
+  - Blackhole
+  - Portal
   layers:
   - Default
   - TransparentFX
