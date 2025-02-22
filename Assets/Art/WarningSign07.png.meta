@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0102e376c271074d83b0a8ebffc5f8c
+guid: 4dda10c01ae68a44e890479331908b63
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8664961802942029117
-    second: meteor2_0
+      213: -5107236308524254535
+    second: WarningSign07_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: meteor2_0
+      name: WarningSign07_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 18
-        width: 37
-        height: 68
+        x: 4
+        y: 3
+        width: 24
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c2ef4f262fdfb780800000000000000
-      internalID: -8664961802942029117
+      spriteID: 9ba3f6ef2a37f19b0800000000000000
+      internalID: -5107236308524254535
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      meteor2_0: -8664961802942029117
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
