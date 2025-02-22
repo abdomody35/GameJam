@@ -103,7 +103,6 @@ public class PlayerController : MonoBehaviour
         // Handle fuel consumption and recharging
         HandleFuel();
         fuelText.text = "Fuel: %" + currentFuel.ToString("F2");
-        
     }
 
     void FixedUpdate()
