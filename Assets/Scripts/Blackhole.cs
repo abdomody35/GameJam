@@ -8,7 +8,7 @@ public class Blackhole : MonoBehaviour
         {
             if (other.TryGetComponent<PlayerController>(out var player))
             {
-                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
+                player.TakeDamage(); 
             }
         }
         else if (other.CompareTag("Bullet"))

@@ -28,8 +28,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Destroy the bullet if it hits an enemy or goes out of bounds
-        if ((gameObject.CompareTag("Bullet") && collision.CompareTag("Enemy")))
+        
+        if (gameObject.CompareTag("Bullet") && collision.CompareTag("Enemy"))
         {
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
             }
 
-            // Destroy the bullet after hitting the enemy
+           
             Destroy(gameObject);
         }
 
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
+                player.TakeDamage(); 
             }
             Destroy(gameObject);
         }

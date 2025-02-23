@@ -12,9 +12,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip hurting_sfx;
 
     [Header("Movement Settings")]
-    public float _normalSpeed = 1f;
-    public float _thrusterSpeed = 50f;
-    // (FollowDelay and SmoothDamp are no longer needed for constant movement)
+    public float _normalSpeed = 9f;
+    public float _thrusterSpeed = 12f;
     private float followDelay = 0.2f;
     private Vector2 currentVelocity = Vector2.zero;
 
@@ -23,8 +22,8 @@ public class PlayerController : MonoBehaviour
     [Header("Fuel Settings")]
     public float maxFuel = 100f;
     private float currentFuel;
-    public float fuelConsumptionRate = 40f;  // Fuel units per second while thrusting
-    public float fuelRechargeRate = 5f;      // Fuel units per second when not thrusting
+    public float fuelConsumptionRate = 40f;
+    public float fuelRechargeRate = 5f;
     private bool _isThrustActive = false;
     private bool isRecharging = true;
 
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour
     public int maxBulletLevel = 4;
     private int powerupCount = 0;
 
-    // Increments for upgrades:
     public float speedUpgradeIncrement = 0.75f;
     public float damageUpgradeIncrement = 0.5f;
 
@@ -95,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        // Mouse movement is always in control.
+        // keyboard controls removed
     }
 
     public void OnThrust(InputAction.CallbackContext context)
@@ -185,13 +183,15 @@ public class PlayerController : MonoBehaviour
         src.clip = hurting_sfx;
         src.Play();
         GameManager.instance.DecreaseLives();
-        if (GameManager.instance.Lives <= 0)
+        if (GameState.instance.Lives <= 0)
             Die();
     }
 
     private void Die()
     {
         GameManager.instance.LoadScene(2); // 2 for game over
+        GameState.instance.Score = 0;
+        GameState.instance.Lives = 3;
     }
 
     // --- Powerup / Upgrade System ---
@@ -201,10 +201,15 @@ public class PlayerController : MonoBehaviour
         powerupCount++;
 
         if (powerupCount % 3 == 0)
+        {
             if (bulletLevel < maxBulletLevel)
+            {
                 bulletLevel++;
-
-        else if(powerupCount % 5 == 0)
+            }
+        }
+        else if (powerupCount % 5 == 0)
+        {
             GameManager.instance.IncreaseLives();
+        }
     }
 }

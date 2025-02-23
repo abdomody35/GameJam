@@ -30,5 +30,9 @@ public class Collectible2D : MonoBehaviour
             GameManager.instance.AudioSrc.clip = onCollectAudio;
             GameManager.instance.AudioSrc.Play();
         }
+        if (other.CompareTag("Bottom_Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public int score = 100;
     public int maxHealth = 3;
     public GameObject collectible;
-    public float fireRate = 2f; // Initial spawn interval of bullets
+    public float fireRate = 2f;
     public GameObject bullet;
     private int currentHealth;
     private AudioSource _src;
@@ -57,7 +57,7 @@ public class EnemyHealth : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
+                player.TakeDamage(); 
             }
             _src.clip = die_sfx;
             _src.Play();
@@ -67,12 +67,12 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        // Play explosion effects or sound here if needed.
+        
         _src.clip = die_sfx;
         _src.Play();
         Destroy(gameObject);
 
-        // there is a chance it spawns a power up that will increase the player level
+        
         int random = Random.Range(1, 100);
         if (random < 12)
         {

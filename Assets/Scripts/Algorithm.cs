@@ -66,20 +66,22 @@ public class Algorithm : MonoBehaviour
 
     IEnumerator DifficultyScaler()
     {
+        
+
         while (true)
         {
             _gameTime++;
             yield return new WaitForSeconds(1);
-
+            
             float _gameStage;
 
             if (_gameTime / 60 == 0)
             {
-                _gameStage = (_gameTime / 60 + GameManager.instance.Score) * 1.2f;
+                _gameStage = (_gameTime / 60 + GameState.instance.Score) * 1.2f;
             }
             else
             {
-                _gameStage = (_gameTime / 60 + GameManager.instance.Score) * 1.2f;
+                _gameStage = (_gameTime / 60 + GameState.instance.Score) * 1.2f;
             }
 
             if ((_gameTime < 30 || _gameTime % 10 == 0) && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
@@ -87,9 +89,9 @@ public class Algorithm : MonoBehaviour
                 _availableObstacles++; // Unlock a new obstacle
             }
 
-            if (_gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
+            if (_gameStage % 10 == 0)
             {
-                _spawnInterval = Mathf.Max(0.4f, _spawnInterval - 0.05f); // Decrease spawn interval (faster spawning, min 0.4s)
+                _spawnInterval = Mathf.Max(0.5f, _spawnInterval - _gameTime < 60 ?  0.075f : 0.05f); // Decrease spawn interval (faster spawning, min 0.5s)
             }
         }
     }

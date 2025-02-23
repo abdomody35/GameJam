@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   die_sfx: {fileID: 0}
   score: 100
-  maxHealth: 3
+  maxHealth: 6
   collectible: {fileID: 6753450361440110224, guid: 703bc791c4761a244a7654f94a4bbef8, type: 3}
   fireRate: 2
   bullet: {fileID: 3469638887105609576, guid: 187813129af0a8f4c8b4cc4b49ae43da, type: 3}
