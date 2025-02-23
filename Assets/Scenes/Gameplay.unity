@@ -574,6 +574,7 @@ MonoBehaviour:
   fuelConsumptionRate: 15
   fuelRechargeRate: 30
   fuelRechargeDelay: 2
+  bulletPrefab: {fileID: 6023920734999296876, guid: d408be0165b28a547a285b5b3582a7eb, type: 3}
   firePoint: {fileID: 1133725712}
   fireRate: 0.25
 --- !u!50 &36603213
@@ -2407,7 +2408,7 @@ MonoBehaviour:
   - {fileID: 8888617804574167430, guid: 7ebe6c4a38bb9a94fbb51f56661a837a, type: 3}
   - {fileID: 6690173133969031479, guid: 43d0f48b13341a84e94a801189639741, type: 3}
   - {fileID: 6511448011914126442, guid: f6afdd598a8780e46bcbba50958d6acc, type: 3}
-  - {fileID: 6144262752614572705, guid: dd524a18107d20247bccf335d338f4fc, type: 3}
+  - {fileID: 4237143753841068617, guid: dd524a18107d20247bccf335d338f4fc, type: 3}
   meteorWarning: {fileID: 1130117755283156302, guid: 4f82ac26b6e20eb449c65e256e99daac, type: 3}
 --- !u!212 &1663028180
 SpriteRenderer:

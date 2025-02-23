@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 36603213}
   - component: {fileID: 36603214}
   - component: {fileID: 36603215}
+  - component: {fileID: 36603216}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -205,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 36603208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -1.99, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -490,6 +491,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &36603216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36603208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc5d950b88741e458e1b12daa200306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &134306129
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,8 +877,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 55acc50444b82a04fbf4042e87ac691c, type: 3}
-  m_Resource: {fileID: 8300000, guid: 55acc50444b82a04fbf4042e87ac691c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: afed9e4ea3ac86044b7bc239de7db173, type: 3}
+  m_Resource: {fileID: 8300000, guid: afed9e4ea3ac86044b7bc239de7db173, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2415,7 +2428,7 @@ MonoBehaviour:
   - {fileID: 3400638339400973836, guid: be521bf7960739f48a9bc327844c3ffe, type: 3}
   - {fileID: 1432871067640460651, guid: 20779eacab9b8bf4db67eb4dbc9d9555, type: 3}
   - {fileID: 1916116603058853932, guid: 3dd4220a89093fe40a94e6869ee730b1, type: 3}
-  - {fileID: 6144262752614572705, guid: dd524a18107d20247bccf335d338f4fc, type: 3}
+  - {fileID: 4237143753841068617, guid: dd524a18107d20247bccf335d338f4fc, type: 3}
   meteorWarning: {fileID: 1130117755283156302, guid: 4f82ac26b6e20eb449c65e256e99daac, type: 3}
 --- !u!212 &1663028180
 SpriteRenderer:
