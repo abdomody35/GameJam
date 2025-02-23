@@ -11,7 +11,7 @@ public class MagicSpell : MonoBehaviour
                 player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
             }
         }
-        else
+        else if (other.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
         }

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,58 @@ public class GameManager : MonoBehaviour
     {
         _lives--;
         livesText.text = "Lives: 0" + _lives.ToString();
+
+        UpdateLivesDisplay();
+    }
+
+    public void IncreaseLives()
+    {
+        _lives++;
+        Debug.Log("Increasing lives " + _lives);
+        livesText.text = "Lives: 0" + _lives.ToString();
+
+        UpdateLivesDisplay();
+    }
+    
+    private Coroutine flashCoroutine; // Stores the flashing coroutine
+
+    public void UpdateLivesDisplay()
+    {
+        if (_lives == 1)
+        {
+            if (flashCoroutine == null) // Start flashing only if not already flashing
+            {
+                flashCoroutine = StartCoroutine(FlashLivesText());
+            }
+        }
+        else
+        {
+            if (flashCoroutine != null)
+            {
+                StopCoroutine(flashCoroutine);
+                flashCoroutine = null;
+            }
+
+            if (_lives > 3)
+            {
+                livesText.color = Color.green; // Healthy state
+            }
+            else // Covers 2 and 3
+            {
+                livesText.color = Color.white; // Normal state
+            }
+        }
+    }
+
+    private IEnumerator FlashLivesText()
+    {
+        while (_lives == 1)
+        {
+            livesText.color = Color.red;
+            yield return new WaitForSeconds(0.5f); // Half a second delay
+            livesText.color = Color.white;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private void Update()

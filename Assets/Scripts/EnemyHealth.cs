@@ -74,7 +74,7 @@ public class EnemyHealth : MonoBehaviour
 
         // there is a chance it spawns a power up that will increase the player level
         int random = Random.Range(1, 100);
-        if (random < 6)
+        if (random < 12)
         {
             Instantiate(collectible, transform.position, transform.rotation);
         }

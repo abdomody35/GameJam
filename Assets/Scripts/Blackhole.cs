@@ -6,13 +6,12 @@ public class Blackhole : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            if (other.TryGetComponent<PlayerController>(out var player))
             {
-                enemyHealth.TakeDamage(1);
+                player.TakeDamage(); // Assumes your PlayerController has a TakeDamage method
             }
         }
-        else
+        else if (other.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
         }

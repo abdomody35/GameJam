@@ -5,6 +5,9 @@ public class Collectible2D : MonoBehaviour
     public float rotationSpeed = 0.5f;
 
     public GameObject onCollectEffect;
+    public GameObject onDamageIncrease;
+    public GameObject onFireRateIncrease;
+    public AudioClip onCollectAudio;
 
     // Update is called once per frame
     void Update()
@@ -17,8 +20,15 @@ public class Collectible2D : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            other.GetComponent<PlayerController>().bulletPrefab.GetComponent<Bullet>().damage++;
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.ApplyPowerup();
+            }
+
             Instantiate(onCollectEffect, transform.position, transform.rotation);
+            GameManager.instance.AudioSrc.clip = onCollectAudio;
+            GameManager.instance.AudioSrc.Play();
         }
     }
 }

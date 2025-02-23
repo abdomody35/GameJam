@@ -9,216 +9,159 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fuelText;
     public AudioSource src;
     public AudioClip shooting_sfx;
+    public AudioClip hurting_sfx;
 
     [Header("Movement Settings")]
-    public float _normalSpeed = 10f;
-    public float _thrusterSpeed = 15f;
-    private Vector2 moveInput;
-    private bool _isMoving = false;
-
-    [Header("Follow Mouse Settings")]
-    public bool followMouse = true;          // Implicitly switched based on input
-    public float followDelay = 0.2f;           // Delay (smooth time) for following the mouse
+    public float _normalSpeed = 1f;
+    public float _thrusterSpeed = 50f;
+    // (FollowDelay and SmoothDamp are no longer needed for constant movement)
+    private float followDelay = 0.2f;
     private Vector2 currentVelocity = Vector2.zero;
-    private Vector2 lastMousePosition;         // Track last frame's mouse position
-    public float mouseMoveThreshold = 5f;      // Pixels moved to trigger mouse mode
+
+    private Rigidbody2D rb;
 
     [Header("Fuel Settings")]
     public float maxFuel = 100f;
-    public float fuelConsumptionRate = 15f;
-    public float fuelRechargeRate = 30f;
-    public float fuelRechargeDelay = 2f;       // Wait time before fuel starts recharging
     private float currentFuel;
+    public float fuelConsumptionRate = 40f;  // Fuel units per second while thrusting
+    public float fuelRechargeRate = 5f;      // Fuel units per second when not thrusting
     private bool _isThrustActive = false;
-    private bool isRecharging = false;
+    private bool isRecharging = true;
 
     [Header("Shooting Settings")]
-    public GameObject bulletPrefab;
+    public GameObject[] bulletPrefabs;
     public Transform firePoint;
-    public float fireRate = 0.25f;
-    private float fireCooldown;
-    private bool _isShooting = false;
+    public float damage = 1f;
+    public float shotInterval = 4.2f;
+    private float _lastShootTime = 0f;
+    private Coroutine shootingCoroutine;
 
-    // Reference to the Rigidbody2D component
-    private Rigidbody2D rb;
+    // --- Upgrade & Stats ---
+    public int bulletLevel = 0;
+    public int maxBulletLevel = 4;
+    private int powerupCount = 0;
 
-    public float CurrentMovingSpeed
-    {
-        get
-        {
-            if (_isMoving)
-            {
-                return _isThrustActive ? _thrusterSpeed : _normalSpeed;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
+    // Increments for upgrades:
+    public float speedUpgradeIncrement = 0.75f;
+    public float damageUpgradeIncrement = 0.5f;
 
-    public bool IsMoving
-    {
-        get { return _isMoving; }
-        private set { _isMoving = value; }
-    }
-
-    public bool IsThrustActive
-    {
-        get { return _isThrustActive; }
-        private set
-        {
-            _isThrustActive = value;
-            animator.SetBool("IsThrustActive", value);
-        }
-    }
+    public float CurrentMovingSpeed => _isThrustActive ? _thrusterSpeed : _normalSpeed;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>(); // Ensure your GameObject has an Animator component
-    }
-
-    void Start()
-    {
+        animator = GetComponent<Animator>();
         currentFuel = maxFuel;
-        lastMousePosition = Input.mousePosition;
     }
 
     void Update()
     {
-        if (fireCooldown > 0)
-            fireCooldown -= Time.deltaTime;
-
-        // Implicitly switch to mouse-follow mode if mouse movement is significant
-        Vector2 currentMousePos = Input.mousePosition;
-        if (Vector2.Distance(currentMousePos, lastMousePosition) > mouseMoveThreshold)
-        {
-            followMouse = true;
-        }
-        lastMousePosition = currentMousePos;
-
-        // Handle fuel consumption and recharging
         HandleFuel();
-        fuelText.text = "Fuel: %" + currentFuel.ToString("F2");
-        
+        fuelText.text = "Fuel: " + currentFuel.ToString("F2");
+        if (currentFuel > 65f)
+            fuelText.color = Color.green;
+        else if (currentFuel > 30f)
+            fuelText.color = Color.yellow;
+        else
+            fuelText.color = Color.red;
     }
 
     void FixedUpdate()
     {
-        if (fireCooldown > 0)
-            fireCooldown -= Time.deltaTime;
+        Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 smoothedPos = Vector2.SmoothDamp(rb.position, targetPos, ref currentVelocity, followDelay);
+        Vector2 displacement = smoothedPos - rb.position;
+        float maxDisplacement = CurrentMovingSpeed * Time.fixedDeltaTime;
+        if (displacement.magnitude > maxDisplacement)
+        {
+            displacement = displacement.normalized * maxDisplacement;
+        }
+        rb.MovePosition(rb.position + displacement);
 
-        if (followMouse)
-        {
-            // Convert mouse position from screen space to world space and follow with smoothing
-            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 newPos = Vector2.SmoothDamp(rb.position, targetPos, ref currentVelocity, followDelay);
-            rb.MovePosition(newPos);
-        }
-        else
-        {
-            // Move using keyboard input
-            rb.linearVelocity = new Vector2(moveInput.x * CurrentMovingSpeed, moveInput.y * CurrentMovingSpeed);
-        }
-
-        // Calculate a turn value based on input method
-        float turnValue = 0f;
-        if (!followMouse)
-        {
-            // Use keyboard horizontal input for turning
-            turnValue = moveInput.x;
-        }
-        else
-        {
-            // For mouse mode, calculate difference between mouse's x and the ship's x
-            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            turnValue = targetPos.x - rb.position.x;
-            // Optionally clamp or scale turnValue if needed
-        }
-
-        // Define a dead zone threshold
-        float deadZone = 0.65f;
+        float turnValue = targetPos.x - rb.position.x;
+        float deadZone = 1.65f;
         bool turnRight = turnValue > deadZone;
         bool turnLeft = turnValue < -deadZone;
-
-        // If the absolute turn value is within the dead zone, don't play any turn animation
         if (Mathf.Abs(turnValue) < deadZone)
         {
             turnRight = false;
             turnLeft = false;
         }
-
-        // Set the animator parameters
         animator.SetBool("TurnRight", turnRight);
         animator.SetBool("TurnLeft", turnLeft);
-        // Shooting logic: fire while the shooting button is held and cooldown permits
-        if (_isShooting && fireCooldown <= 0)
-        {
-            Fire();
-            fireCooldown = fireRate;
-        }
     }
 
-    // Called by the PlayerInput component for movement (keyboard mode)
+
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
-        IsMoving = (moveInput != Vector2.zero);
-        if (moveInput != Vector2.zero)
-            followMouse = false; // Switch to keyboard mode if keyboard movement is detected
+        // Mouse movement is always in control.
     }
 
-    // Called by the PlayerInput component for thrust
     public void OnThrust(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            IsThrustActive = true;
+            _isThrustActive = true;
             isRecharging = false;
-            StopCoroutine("FuelRechargeDelay");
+            animator.SetBool("IsThrustActive", true);
         }
         else if (context.canceled)
         {
-            IsThrustActive = false;
-            StartCoroutine("FuelRechargeDelay");
+            _isThrustActive = false;
+            isRecharging = true;
+            animator.SetBool("IsThrustActive", false);
         }
     }
 
-    // Called by the PlayerInput component for shooting
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            _isShooting = true;
+            if (Time.time - _lastShootTime >= shotInterval)
+            {
+                Fire();
+                _lastShootTime = Time.time;
+            }
+            if (shootingCoroutine == null)
+                shootingCoroutine = StartCoroutine(ContinuousShooting());
         }
         else if (context.canceled)
         {
-            _isShooting = false;
+            if (shootingCoroutine != null)
+            {
+                StopCoroutine(shootingCoroutine);
+                shootingCoroutine = null;
+            }
         }
     }
 
-    // Coroutine to delay fuel recharge after thrusting stops
-    private IEnumerator FuelRechargeDelay()
+    private IEnumerator ContinuousShooting()
     {
-        yield return new WaitForSeconds(fuelRechargeDelay);
-        isRecharging = true;
+        while (true)
+        {
+            yield return new WaitForSeconds(shotInterval);
+            if (Time.time - _lastShootTime >= shotInterval)
+            {
+                Fire();
+                _lastShootTime = Time.time;
+            }
+        }
     }
 
-    // Handle fuel consumption when thrusting and recharging when not
     private void HandleFuel()
     {
-        if (IsThrustActive && currentFuel > 0)
+        if (_isThrustActive && currentFuel > 0)
         {
             currentFuel -= fuelConsumptionRate * Time.deltaTime;
             if (currentFuel <= 0)
             {
                 currentFuel = 0;
-                IsThrustActive = false;
-                StartCoroutine(FuelRechargeDelay());
+                _isThrustActive = false;
+                isRecharging = true;
             }
         }
-        else if (!IsThrustActive && isRecharging && currentFuel < maxFuel)
+        else if (!_isThrustActive && isRecharging && currentFuel < maxFuel)
         {
             currentFuel += fuelRechargeRate * Time.deltaTime;
             if (currentFuel > maxFuel)
@@ -228,26 +171,40 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        if (bulletPrefab != null && firePoint != null)
+        if (bulletPrefabs != null && firePoint != null)
         {
             src.clip = shooting_sfx;
             src.Play();
             animator.SetTrigger("Shoot");
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(bulletPrefabs[bulletLevel], firePoint.position, firePoint.rotation);
         }
     }
 
     public void TakeDamage()
     {
+        src.clip = hurting_sfx;
+        src.Play();
         GameManager.instance.DecreaseLives();
         if (GameManager.instance.Lives <= 0)
-        {
             Die();
-        }
     }
 
     private void Die()
     {
         GameManager.instance.LoadScene(2); // 2 for game over
+    }
+
+    // --- Powerup / Upgrade System ---
+    public void ApplyPowerup()
+    {
+        damage += damageUpgradeIncrement;
+        powerupCount++;
+
+        if (powerupCount % 3 == 0)
+            if (bulletLevel < maxBulletLevel)
+                bulletLevel++;
+
+        else if(powerupCount % 5 == 0)
+            GameManager.instance.IncreaseLives();
     }
 }

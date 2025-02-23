@@ -73,22 +73,17 @@ public class Algorithm : MonoBehaviour
 
             float _gameStage;
 
-            if (GameManager.instance.Score > 500)
+            if (_gameTime / 60 == 0)
             {
-                _gameStage = _gameTime / 60 * GameManager.instance.Score * 0.3f;
-            }
-            else if (GameManager.instance.Score < 200)
-            {
-                _gameStage = _gameTime / 60 * GameManager.instance.Score * 100f;
+                _gameStage = (_gameTime / 60 + GameManager.instance.Score) * 1.2f;
             }
             else
             {
-                _gameStage = _gameTime / 60 * GameManager.instance.Score * 0.8f;
+                _gameStage = (_gameTime / 60 + GameManager.instance.Score) * 1.2f;
             }
 
-            if ((_gameTime < 30 ||_gameTime % 10 == 0) && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
+            if ((_gameTime < 30 || _gameTime % 10 == 0) && _availableObstacles < _maxObstacles && _gameStage >= Mathf.Pow(2, _availableObstacles - 1) * 60)
             {
-                if (_availableObstacles < _maxObstacles - 1 && GameManager.instance.Score < 5000)
                 _availableObstacles++; // Unlock a new obstacle
             }
 

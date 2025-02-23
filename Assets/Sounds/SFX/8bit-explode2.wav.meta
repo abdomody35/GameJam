@@ -13,10 +13,10 @@ AudioImporter:
     conversionMode: 0
     preloadAudioData: 0
   platformSettingOverrides: {}
-  forceToMono: 1
-  normalize: 1
+  forceToMono: 0
+  normalize: 0
   loadInBackground: 1
-  ambisonic: 1
+  ambisonic: 0
   3D: 1
   userData: 
   assetBundleName: 

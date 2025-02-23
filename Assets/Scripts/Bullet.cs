@@ -6,9 +6,7 @@ public class Bullet : MonoBehaviour
     public int damage = 1;
 
     void Start()
-    {
-        damage = 1;
-        
+    {        
         // Add a Rigidbody2D component and set collision detection to Continuous
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;

@@ -401,12 +401,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -76982044855044179, guid: 3f395867116de3f45b17fa65ebfa855b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f395867116de3f45b17fa65ebfa855b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.7, y: 0.77}
+  m_Size: {x: 1.09375, y: 1.359375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -565,18 +565,26 @@ MonoBehaviour:
   fuelText: {fileID: 1403637642}
   src: {fileID: 1785417979}
   shooting_sfx: {fileID: 8300000, guid: 48547284903febe4693114cf81daadd2, type: 3}
+  hurting_sfx: {fileID: 8300000, guid: eefe6e5394578664c800efe217cda963, type: 3}
   _normalSpeed: 10
   _thrusterSpeed: 15
-  followMouse: 1
-  followDelay: 0.2
-  mouseMoveThreshold: 5
   maxFuel: 100
   fuelConsumptionRate: 15
   fuelRechargeRate: 30
-  fuelRechargeDelay: 2
-  bulletPrefab: {fileID: 6023920734999296876, guid: d408be0165b28a547a285b5b3582a7eb, type: 3}
+  bulletPrefabs:
+  - {fileID: 6023920734999296876, guid: d408be0165b28a547a285b5b3582a7eb, type: 3}
+  - {fileID: 6023920734999296876, guid: f3158572f969a2342a227f907adf60ee, type: 3}
+  - {fileID: 6023920734999296876, guid: fc21ea3c4a9c4bf449fe5bad9edc8b6a, type: 3}
+  - {fileID: 6023920734999296876, guid: 5803031d4eb8bdb469dd1605db293b78, type: 3}
+  - {fileID: 6023920734999296876, guid: 041723b25f174b24b9cc03d15feae1e7, type: 3}
   firePoint: {fileID: 1133725712}
-  fireRate: 0.25
+  damage: 1
+  shotInterval: 0.2
+  bulletLevel: 0
+  maxBulletLevel: 4
+  powerupCount: 0
+  speedUpgradeIncrement: 0.75
+  damageUpgradeIncrement: 0.5
 --- !u!50 &36603213
 Rigidbody2D:
   serializedVersion: 5
@@ -642,8 +650,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.09375, y: 1.21875}
-    newSize: {x: 0.7, y: 0.77}
+    oldSize: {x: 1.09375, y: 1.359375}
+    newSize: {x: 1.09375, y: 1.359375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2480,6 +2488,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1731515871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731515874}
+  - component: {fileID: 1731515873}
+  - component: {fileID: 1731515872}
+  m_Layer: 0
+  m_Name: Box Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1731515872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731515871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 2
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 0}
+--- !u!65 &1731515873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731515871}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1731515874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731515871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 523.7762, y: 291.1691, z: -1.3105979}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785417978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,3 +3077,4 @@ SceneRoots:
   - {fileID: 21711799}
   - {fileID: 35022232}
   - {fileID: 538149409}
+  - {fileID: 1731515874}
