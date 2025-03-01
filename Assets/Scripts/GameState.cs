@@ -5,6 +5,8 @@ public class GameState : MonoBehaviour
     public int lives = 3;
     private int _score = 0;
     private int _gameTime = 0;
+    private float _spawnInterval = 3f;
+    private int _initialDelay = 3;
     private int _world = 1;
     public int _bulletLevel = 0;
     public int _maxBulletLevel = 4;
@@ -19,6 +21,8 @@ public class GameState : MonoBehaviour
     public int Lives { get { return lives; } set { lives = value; } }
     public int Score { get { return _score; } set { _score = value; } }
     public int GameTime { get { return _gameTime; } set { _gameTime = value; } }
+    public float SpawnInterval { get { return _spawnInterval; } set { _spawnInterval = value; } }
+    public int InitialDelay { get { return _initialDelay; } set { _initialDelay = value; } }
     public int World { get { return _world; } set { _world = value; } }
     public int BulletLevel { get { return _bulletLevel; } set { _bulletLevel = value; } }
     public int MaxBulletLevel { get { return _maxBulletLevel; } set { _maxBulletLevel = value; } }
@@ -52,5 +56,7 @@ public class GameState : MonoBehaviour
         _bulletLevel = 0;
         _maxBulletLevel = 4;
         _powerupCount = 0;
+        _spawnInterval = 3f;
+        _initialDelay = 3;
     }
 }

@@ -6,12 +6,11 @@ public class Algorithm : MonoBehaviour
 {
     public GameObject[] obstacle; // List of obstacles
     public GameObject meteorWarning;
-    private readonly int _initialDelay = 3; // Initial delay before start of the game
     private readonly int _maxObstacles = 7; // Maximum number of different obstacles to unlock
     private readonly int _spawnRangeX = 8; // Range of x values obstacles can spawn at
     private readonly int _spawnRangeY = 4; // Range of y values obstacles can spawn at
     private int _availableObstacles = 1; // Starts with only the first obstacle available
-    private float _spawnInterval = 3f; // Initial spawn interval
+                                         // Initial spawn interval
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class Algorithm : MonoBehaviour
 
     IEnumerator Spawner()
     {
-        yield return new WaitForSeconds(_initialDelay);
+        yield return new WaitForSeconds(GameState.instance.InitialDelay);
 
         List<GameObject> tempObstacles = new();
         GameObject portal = null;
@@ -57,7 +56,7 @@ public class Algorithm : MonoBehaviour
                 }
                 previousMetoers.Add(GameState.instance.GameTime);
                 StartCoroutine(Warning(obstacle[3]));
-                yield return new WaitForSeconds(_spawnInterval);
+                yield return new WaitForSeconds(GameState.instance.SpawnInterval);
                 continue;
             }
             else if (randomIndex == 6)
@@ -86,7 +85,7 @@ public class Algorithm : MonoBehaviour
 
             if (Random.Range(1, 100) < 3)
             {
-                if (portal != null || GameState.instance.GameTime - portalTime < 10 || GameState.instance.GameTime < 20 || GameState.instance.Score < 300)
+                if (portal != null || GameState.instance.GameTime - portalTime < 20 || GameState.instance.GameTime < 20 || GameState.instance.Score < 300)
                 {
                     continue;
                 }
@@ -96,7 +95,7 @@ public class Algorithm : MonoBehaviour
                 portal = Instantiate(obstacle[7], randomPosition, transform.rotation);
             }
 
-            yield return new WaitForSeconds(_spawnInterval); // Wait before spawning next obstacle
+            yield return new WaitForSeconds(GameState.instance.SpawnInterval); // Wait before spawning next obstacle
         }
     }
 
@@ -125,7 +124,7 @@ public class Algorithm : MonoBehaviour
 
             if (_gameStage % 10 == 0)
             {
-                _spawnInterval = Mathf.Max(0.5f, _spawnInterval - GameState.instance.GameTime < 60 ? 0.05f : 0.075f); // Decrease spawn interval (faster spawning, min 0.5s)
+                GameState.instance.SpawnInterval = Mathf.Max(0.5f, GameState.instance.SpawnInterval - GameState.instance.GameTime < 60 ? 0.05f : 0.075f); // Decrease spawn interval (faster spawning, min 0.5s)
             }
         }
     }
