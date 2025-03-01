@@ -506,8 +506,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1709848662}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+        m_MethodName: MainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -742,8 +742,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1709848662}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+        m_MethodName: StartGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -929,6 +929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623501185}
   - component: {fileID: 1623501184}
+  - component: {fileID: 1623501186}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -1006,6 +1007,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1623501186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623501183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7400def93811d548b89f7a4bc29d988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  src: {fileID: 0}
+  spaceBackground: {fileID: 21300000, guid: 3e1f7e58a287e40438c18511e8198a18, type: 3}
+  dragonsBackground: {fileID: 21300000, guid: a4117a86dc146df419154945b09365bb, type: 3}
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
 --- !u!1 &1709848658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,12 +1130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7400def93811d548b89f7a4bc29d988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lives: 3
   src: {fileID: 0}
+  spaceBackground: {fileID: 0}
+  dragonsBackground: {fileID: 0}
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
-  mainMenuMusic: {fileID: 0}
-  gameplayMusic: {fileID: 0}
 --- !u!114 &1709848663
 MonoBehaviour:
   m_ObjectHideFlags: 0

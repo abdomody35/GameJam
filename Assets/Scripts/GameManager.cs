@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public AudioSource src;
     public static GameManager instance;
+    public Sprite spaceBackground;
+    public Sprite dragonsBackground;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI livesText;
@@ -16,6 +18,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if (spaceBackground != null && dragonsBackground != null)
+        {
+            GetComponentInParent<SpriteRenderer>().sprite = GameState.instance.World == 3 ? dragonsBackground : spaceBackground;
+        }
     }
 
     private void Start()
@@ -54,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameState.instance.Lives == 1)
         {
-            if (flashCoroutine == null) 
+            if (flashCoroutine == null)
             {
                 flashCoroutine = StartCoroutine(FlashLivesText());
             }
@@ -69,11 +75,11 @@ public class GameManager : MonoBehaviour
 
             if (GameState.instance.Lives > 3)
             {
-                livesText.color = Color.green; 
+                livesText.color = Color.green;
             }
             else // Covers 2 and 3
             {
-                livesText.color = Color.white; 
+                livesText.color = Color.white;
             }
         }
     }
@@ -91,16 +97,26 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
         if (SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape))
         {
-            LoadScene(0);
+            SceneManager.LoadScene(0);
         }
     }
 
-    public void LoadScene(int sceneIndex)
+    public void MainMenu()
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(0);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(GameState.instance.World);
+    }
+
+    public void ChangeWorld()
+    {
+        GameState.instance.ChangeWorld();
+        GetComponentInParent<SpriteRenderer>().sprite = GameState.instance.World == 3 ? dragonsBackground : spaceBackground;
     }
 
     public void ExitGame()

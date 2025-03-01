@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,17 +13,16 @@ public class PlayerController : MonoBehaviour
     public AudioClip hurting_sfx;
 
     [Header("Movement Settings")]
-    public float _normalSpeed = 9f;
-    public float _thrusterSpeed = 12f;
-    private float followDelay = 0.2f;
+    public float _normalSpeed = 10f;
+    public float _thrusterSpeed = 15f;
+    private readonly float followDelay = 0.2f;
     private Vector2 currentVelocity = Vector2.zero;
 
     private Rigidbody2D rb;
 
     [Header("Fuel Settings")]
-    public float maxFuel = 100f;
-    private float currentFuel;
-    public float fuelConsumptionRate = 40f;
+    public float maxFuel = 50f;
+    public float fuelConsumptionRate = 25f;
     public float fuelRechargeRate = 5f;
     private bool _isThrustActive = false;
     private bool isRecharging = true;
@@ -35,30 +35,26 @@ public class PlayerController : MonoBehaviour
     private float _lastShootTime = 0f;
     private Coroutine shootingCoroutine;
 
-    // --- Upgrade & Stats ---
-    public int bulletLevel = 0;
-    public int maxBulletLevel = 4;
-    private int powerupCount = 0;
-
     public float speedUpgradeIncrement = 0.75f;
     public float damageUpgradeIncrement = 0.5f;
 
-    public float CurrentMovingSpeed => _isThrustActive ? _thrusterSpeed : _normalSpeed;
+    private float _currentMovingSpeed;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        currentFuel = maxFuel;
+        GameState.instance.CurrentFuel = maxFuel;
+        _currentMovingSpeed = _normalSpeed;
     }
 
     void Update()
     {
         HandleFuel();
-        fuelText.text = "Fuel: " + currentFuel.ToString("F2");
-        if (currentFuel > 65f)
+        fuelText.text = "Fuel: " + (GameState.instance.CurrentFuel * 2).ToString("F2");
+        if (GameState.instance.CurrentFuel * 2 > 65f)
             fuelText.color = Color.green;
-        else if (currentFuel > 30f)
+        else if (GameState.instance.CurrentFuel * 2 > 30f)
             fuelText.color = Color.yellow;
         else
             fuelText.color = Color.red;
@@ -69,7 +65,7 @@ public class PlayerController : MonoBehaviour
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 smoothedPos = Vector2.SmoothDamp(rb.position, targetPos, ref currentVelocity, followDelay);
         Vector2 displacement = smoothedPos - rb.position;
-        float maxDisplacement = CurrentMovingSpeed * Time.fixedDeltaTime;
+        float maxDisplacement = _currentMovingSpeed * Time.fixedDeltaTime;
         if (displacement.magnitude > maxDisplacement)
         {
             displacement = displacement.normalized * maxDisplacement;
@@ -100,12 +96,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
+            _currentMovingSpeed = _thrusterSpeed;
             _isThrustActive = true;
             isRecharging = false;
             animator.SetBool("IsThrustActive", true);
         }
         else if (context.canceled)
         {
+            _currentMovingSpeed = _normalSpeed;
             _isThrustActive = false;
             isRecharging = true;
             animator.SetBool("IsThrustActive", false);
@@ -149,21 +147,21 @@ public class PlayerController : MonoBehaviour
 
     private void HandleFuel()
     {
-        if (_isThrustActive && currentFuel > 0)
+        if (_isThrustActive && GameState.instance.CurrentFuel > 0)
         {
-            currentFuel -= fuelConsumptionRate * Time.deltaTime;
-            if (currentFuel <= 0)
+            GameState.instance.CurrentFuel -= fuelConsumptionRate * Time.deltaTime;
+            if (GameState.instance.CurrentFuel <= 0)
             {
-                currentFuel = 0;
+                GameState.instance.CurrentFuel = 0;
                 _isThrustActive = false;
                 isRecharging = true;
             }
         }
-        else if (!_isThrustActive && isRecharging && currentFuel < maxFuel)
+        else if (!_isThrustActive && isRecharging && GameState.instance.CurrentFuel < maxFuel)
         {
-            currentFuel += fuelRechargeRate * Time.deltaTime;
-            if (currentFuel > maxFuel)
-                currentFuel = maxFuel;
+            GameState.instance.CurrentFuel += fuelRechargeRate * Time.deltaTime;
+            if (GameState.instance.CurrentFuel > maxFuel)
+                GameState.instance.CurrentFuel = maxFuel;
         }
     }
 
@@ -174,7 +172,7 @@ public class PlayerController : MonoBehaviour
             src.clip = shooting_sfx;
             src.Play();
             animator.SetTrigger("Shoot");
-            Instantiate(bulletPrefabs[bulletLevel], firePoint.position, firePoint.rotation);
+            Instantiate(bulletPrefabs[GameState.instance.BulletLevel], firePoint.position, firePoint.rotation);
         }
     }
 
@@ -189,25 +187,24 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        GameManager.instance.LoadScene(2); // 2 for game over
-        GameState.instance.Score = 0;
-        GameState.instance.Lives = 3;
+        SceneManager.LoadScene(2); // 2 for game over
+        GameState.instance.Reset();
     }
 
     // --- Powerup / Upgrade System ---
     public void ApplyPowerup()
     {
         damage += damageUpgradeIncrement;
-        powerupCount++;
+        GameState.instance.PowerupCount++;
 
-        if (powerupCount % 3 == 0)
+        if (GameState.instance.PowerupCount % 3 == 0)
         {
-            if (bulletLevel < maxBulletLevel)
+            if (GameState.instance.BulletLevel < GameState.instance.MaxBulletLevel)
             {
-                bulletLevel++;
+                GameState.instance.BulletLevel++;
             }
         }
-        else if (powerupCount % 5 == 0)
+        else if (GameState.instance.PowerupCount % 5 == 0)
         {
             GameManager.instance.IncreaseLives();
         }

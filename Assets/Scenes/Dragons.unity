@@ -132,9 +132,9 @@ GameObject:
   - component: {fileID: 36603211}
   - component: {fileID: 36603212}
   - component: {fileID: 36603213}
-  - component: {fileID: 36603214}
   - component: {fileID: 36603215}
   - component: {fileID: 36603216}
+  - component: {fileID: 36603217}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -353,7 +353,7 @@ MonoBehaviour:
   hurting_sfx: {fileID: 8300000, guid: eefe6e5394578664c800efe217cda963, type: 3}
   _normalSpeed: 10
   _thrusterSpeed: 15
-  maxFuel: 100
+  maxFuel: 50
   fuelConsumptionRate: 15
   fuelRechargeRate: 30
   bulletPrefabs:
@@ -365,8 +365,6 @@ MonoBehaviour:
   firePoint: {fileID: 1133725712}
   damage: 1
   shotInterval: 0.2
-  bulletLevel: 0
-  maxBulletLevel: 4
   speedUpgradeIncrement: 0.75
   damageUpgradeIncrement: 0.5
 --- !u!50 &36603213
@@ -396,86 +394,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &36603214
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36603208}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.625, y: 1.625}
-    newSize: {x: 1.625, y: 1.625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.109375, y: -0.046875}
-      - {x: 0.421875, y: 0.09375}
-      - {x: 0.5, y: -0.078125}
-      - {x: 0.5625, y: -0.15625}
-      - {x: 0.765625, y: 0.0625}
-      - {x: 0.765625, y: 0.359375}
-      - {x: 0.6875, y: 0.5}
-      - {x: 0.484375, y: 0.703125}
-      - {x: 0.453125, y: 0.703125}
-      - {x: 0.25, y: 0.421875}
-      - {x: 0.03125, y: 0.703125}
-      - {x: -0.046875, y: 0.703125}
-      - {x: -0.1875, y: 0.421875}
-      - {x: -0.265625, y: 0.421875}
-      - {x: -0.5, y: 0.703125}
-      - {x: -0.5625, y: 0.703125}
-      - {x: -0.59375, y: 0.59375}
-      - {x: -0.75, y: 0.40625}
-      - {x: -0.765625, y: 0.390625}
-      - {x: -0.765625, y: 0.0625}
-      - {x: -0.5625, y: -0.125}
-      - {x: -0.515625, y: -0.109375}
-      - {x: -0.484375, y: -0.0625}
-      - {x: -0.53125, y: 0.09375}
-      - {x: -0.140625, y: 0}
-      - {x: -0.046875, y: -0.3125}
-      - {x: -0.203125, y: -0.421875}
-      - {x: -0.171875, y: -0.734375}
-      - {x: -0.09375, y: -0.765625}
-      - {x: 0.109375, y: -0.765625}
-      - {x: 0.15625, y: -0.734375}
-      - {x: 0.1875, y: -0.5}
-      - {x: 0.171875, y: -0.4375}
-  m_UseDelaunayMesh: 0
 --- !u!95 &36603215
 Animator:
   serializedVersion: 7
@@ -510,6 +428,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc5d950b88741e458e1b12daa200306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &36603217
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36603208}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0023100972, y: -0.027721465}
+  m_Size: {x: 0.918102, y: 1.5048736}
+  m_Direction: 0
 --- !u!1 &134306129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   src: {fileID: 1785417979}
+  spaceBackground: {fileID: 0}
+  dragonsBackground: {fileID: 0}
   scoreText: {fileID: 1880455358}
   livesText: {fileID: 1747345779}
 --- !u!4 &410837090

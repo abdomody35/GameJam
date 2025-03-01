@@ -481,7 +481,7 @@ MonoBehaviour:
   hurting_sfx: {fileID: 8300000, guid: eefe6e5394578664c800efe217cda963, type: 3}
   _normalSpeed: 10
   _thrusterSpeed: 15
-  maxFuel: 100
+  maxFuel: 50
   fuelConsumptionRate: 15
   fuelRechargeRate: 30
   bulletPrefabs:
@@ -493,8 +493,6 @@ MonoBehaviour:
   firePoint: {fileID: 1133725712}
   damage: 1
   shotInterval: 0.2
-  bulletLevel: 0
-  maxBulletLevel: 4
   speedUpgradeIncrement: 0.75
   damageUpgradeIncrement: 0.5
 --- !u!50 &36603213
@@ -992,12 +990,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7400def93811d548b89f7a4bc29d988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lives: 3
   src: {fileID: 1785417979}
+  spaceBackground: {fileID: 0}
+  dragonsBackground: {fileID: 0}
   scoreText: {fileID: 857414947}
   livesText: {fileID: 1810426875}
-  mainMenuMusic: {fileID: 8300000, guid: 4008fbebcb68a6e449e50cceed0a8ed1, type: 3}
-  gameplayMusic: {fileID: 8300000, guid: 33d5521830d0a9b409eac015e2d219c9, type: 3}
 --- !u!4 &410837090
 Transform:
   m_ObjectHideFlags: 0

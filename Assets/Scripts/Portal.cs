@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -7,14 +8,8 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.GetComponent<Dragon>() != null)
-            {
-                GameManager.instance.LoadScene(1);
-            }
-            else
-            {
-                GameManager.instance.LoadScene(3);
-            }
+            GameState.instance.ChangeWorld();
+            SceneManager.LoadScene(GameState.instance.World);
         }
     }
 }
