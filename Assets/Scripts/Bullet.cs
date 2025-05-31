@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     public int damage = 1;
 
     void Start()
-    {        
+    {
         // Add a Rigidbody2D component and set collision detection to Continuous
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
@@ -28,7 +28,15 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (gameObject.CompareTag("Bullet") && collision.CompareTag("Enemy_Bullet"))
+        {
+            Destroy(collision.gameObject);
+
+            Destroy(gameObject);
+
+            return;
+        }
+
         if (gameObject.CompareTag("Bullet") && collision.CompareTag("Enemy"))
         {
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
@@ -37,18 +45,20 @@ public class Bullet : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
             }
 
-           
             Destroy(gameObject);
+            return;
         }
 
-        if ((gameObject.CompareTag("Enemy_Bullet") || gameObject.CompareTag("Meteor")) && collision.CompareTag("Player"))
+        if ((gameObject.CompareTag("Enemy_Bullet") || gameObject.CompareTag("Meteor"))
+            && collision.CompareTag("Player"))
         {
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage(); 
+                player.TakeDamage();
             }
             Destroy(gameObject);
+            return;
         }
 
         if (collision.CompareTag("Bottom_Wall") || collision.CompareTag("Bounds"))
